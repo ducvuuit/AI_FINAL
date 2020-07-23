@@ -32,3 +32,37 @@ class Control:
                 break
         self.robot.stop()
         return directions
+
+    def rotate_right(self, line_sensor, drive_speed):
+        self.robot.straight(70)
+        wait(10)
+        while (True):
+            current = line_sensor.reflection()
+            if (current < 12):
+                break
+            self.robot.drive(drive_speed, 70)
+        self.robot.stop()
+        while (True):
+            current = line_sensor.reflection()
+            if (current > 20):
+                break
+            self.robot.drive(drive_speed, 70)
+        self.robot.stop()
+
+    def rotate_left(self, line_sensor, drive_speed):
+        self.robot.straight(30)
+        wait(10)
+        another_sensor = ColorSensor(Port.S1)
+        while (True):
+            current = another_sensor.reflection()
+            if (current < 15):
+                break
+            self.robot.drive(drive_speed, -70)
+        self.robot.stop()
+        while (True):
+            current = line_sensor.reflection()
+            if (current < 11):
+                break
+            self.robot.drive(drive_speed, -70)
+        self.robot.stop()
+

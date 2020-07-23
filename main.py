@@ -22,5 +22,6 @@ left_motor = Motor(Port.B)
 right_motor = Motor(Port.C)
 
 line_sensor = ColorSensor(Port.S3)
-linefollow = LineFollowing(left_motor,right_motor,threshold=37, proportion=-1.2)
+linefollow = Control(left_motor,right_motor,threshold=37, proportion=-1.2)
 list_direction = linefollow.run(line_sensor, drive_speed=20)
+linefollow.rotate_left(line_sensor, drive_speed=20)
