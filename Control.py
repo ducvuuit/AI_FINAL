@@ -34,36 +34,52 @@ class Control:
         self.robot.stop()
         return directions
 
-    def rotate_right(self, line_sensor, drive_speed):
-        self.robot.straight(70)
+    def rotate_right(self, line_sensor, drive_speed, straight_enable = True):
+        if (straight_enable):
+            self.robot.straight(70)
         wait(10)
         while (True):
             current = line_sensor.reflection()
-            if (current < 20):
+            #print('abc')
+            if (current < 13):
                 break
             self.robot.drive(drive_speed, 70)
         self.robot.stop()
+        #print('abc')
         while (True):
             current = line_sensor.reflection()
+            #print(current)
             if (current > 20):
                 break
             self.robot.drive(drive_speed, 70)
         self.robot.stop()
+        #print('abc')
 
-    def rotate_left(self, line_sensor, drive_speed):
-        self.robot.straight(30)
+    def rotate_left(self, line_sensor, drive_speed, straight_enable = True):
+        if straight_enable:
+            self.robot.straight(30)
         wait(10)
         another_sensor = ColorSensor(Port.S1)
         while (True):
             current = another_sensor.reflection()
-            if (current < 15):
+            if (current < 23):
                 break
             self.robot.drive(drive_speed, -70)
         self.robot.stop()
         while (True):
             current = line_sensor.reflection()
-            if (current < 20):
+            if (current < 23):
                 break
             self.robot.drive(drive_speed, -70)
         self.robot.stop()
 
+    def rotate_back(self, line_sensor, drive_speed):
+        another_sensor = ColorSensor(Port.S1)
+        if (another_sensor.reflection() < 15):
+            self.rotate_left(line_sensor, drive_speed = 20)
+            self.robot.straight(-60)
+            self.rotate_left(line_sensor, drive_speed = 20, straight_enable = False)
+        else:
+            self.rotate_right(line_sensor, drive_speed = 20)
+            self.robot.straight(-50)
+            self.rotate_right(line_sensor, drive_speed = 20, straight_enable = False)

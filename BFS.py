@@ -58,9 +58,12 @@ class BFS:
             #Run robot
             print(goState, desState, angle)
             if (angle == -90):
-                self.control.rotate_left(linesensor, drive_speed = 20)
+                self.control.rotate_left(linesensor, drive_speed = 50)
             if (angle == 90):
-                self.control.rotate_right(linesensor, drive_speed = 20)
+                self.control.rotate_right(linesensor, drive_speed = 50)
+            if (angle == 180):
+                self.control.rotate_back(linesensor, drive_speed = 50)
+
             self.control.run(linesensor,drive_speed = 20)
             #
             curDirect = desDirect
