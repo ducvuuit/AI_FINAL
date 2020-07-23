@@ -18,6 +18,7 @@ class Control:
         self.robot = DriveBase(left_motor,right_motor,wheel_diameter, axle_track)
     
     def run(self, line_sensor, drive_speed):
+        self.robot.straight(20)
         directions = []
         another_sensor = ColorSensor(Port.S1)
         while (True):
@@ -38,7 +39,7 @@ class Control:
         wait(10)
         while (True):
             current = line_sensor.reflection()
-            if (current < 12):
+            if (current < 20):
                 break
             self.robot.drive(drive_speed, 70)
         self.robot.stop()
@@ -61,7 +62,7 @@ class Control:
         self.robot.stop()
         while (True):
             current = line_sensor.reflection()
-            if (current < 11):
+            if (current < 20):
                 break
             self.robot.drive(drive_speed, -70)
         self.robot.stop()
