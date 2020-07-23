@@ -7,7 +7,7 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile
 
-class LineFollowing:
+class Control:
     def __init__(self, left_motor, right_motor,  threshold, proportion, wheel_diameter=55.5, axle_track=104):
         self.left_motor = left_motor
         self.right_motor = right_motor
