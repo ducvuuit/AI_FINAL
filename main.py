@@ -22,11 +22,11 @@ left_motor = Motor(Port.B)
 right_motor = Motor(Port.C)
 
 map = [
-    [(1,20,'U')],
-    [(0,20,'D'), (2,50,'U'), (3,15,'L')],
-    [(1,50,'D'), (4,15, 'L')],
-    [(1,15,'R'), (4,50,'U')],
-    [(3,50,'D'), (2,15,'R')]
+    [(1,0,'U')],
+    [(0,0,'D'), (2,0,'U'), (3,0,'L')],
+    [(1,0,'D'), (4,0, 'L')],
+    [(1,0,'R'), (4,0,'U')],
+    [(3,0,'D'), (2,0,'R')]
 ]
 
 #line_sensor = ColorSensor(Port.S3)
@@ -34,6 +34,6 @@ linefollow = Control(left_motor,right_motor,threshold=37, proportion=-1.2)
 #list_direction = linefollow.run(line_sensor, drive_speed=20)
 #linefollow.rotate_left(line_sensor, drive_speed=20)
 bfs = BFS(control = linefollow, mapInp = map)
-path = bfs.run(4,3)
+path = bfs.run(3, 2)
 print(path)
 bfs.play(path, 'L')
