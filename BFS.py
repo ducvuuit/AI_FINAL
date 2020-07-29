@@ -30,7 +30,7 @@ class BFS:
         while (len(state) > 0):
             (currentState, currentLength, currentPath) = state[0]
             del state[0]
-            for (curState, length, path) in self.map[currentState]:
+            for (curState, length, action) in self.map[currentState]:
                 if (mark[curState]):
                     mark[curState] = False
                     routes = currentPath + [curState]
@@ -46,7 +46,7 @@ class BFS:
         for index in range(len(path) - 1):
             goState = path[index]
             desState = path[index + 1]
-            for (state, length, direct) in self.map[goState]:
+            for (state, length, direct, reward) in self.map[goState]:
                 if (state == desState):
                     desDirect = direct
                     break
@@ -67,4 +67,5 @@ class BFS:
             self.control.run(linesensor,drive_speed = 20)
             #
             curDirect = desDirect
+        return curDirect
 

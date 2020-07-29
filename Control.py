@@ -28,7 +28,7 @@ class Control:
             self.robot.drive(drive_speed, turn_rate)
             if (current < 11):
                 directions.append('R')
-                if (another_sensor.reflection() < 20):
+                if (another_sensor.reflection() < 23):
                     directions.append('L')
                 break
         self.robot.stop()
@@ -41,7 +41,7 @@ class Control:
         while (True):
             current = line_sensor.reflection()
             #print('abc')
-            if (current < 13):
+            if (current < 10):
                 break
             self.robot.drive(drive_speed, 70)
         self.robot.stop()
@@ -75,7 +75,7 @@ class Control:
 
     def rotate_back(self, line_sensor, drive_speed):
         another_sensor = ColorSensor(Port.S1)
-        if (another_sensor.reflection() < 15):
+        if (another_sensor.reflection() < 20):
             self.rotate_left(line_sensor, drive_speed = 20)
             self.robot.straight(-60)
             self.rotate_left(line_sensor, drive_speed = 20, straight_enable = False)
