@@ -18,7 +18,7 @@ class Control:
         self.robot = DriveBase(left_motor,right_motor,wheel_diameter, axle_track)
     
     def run(self, line_sensor, drive_speed):
-        self.robot.straight(20)
+        self.robot.straight(30)
         directions = []
         another_sensor = ColorSensor(Port.S1)
         while (True):
@@ -49,28 +49,28 @@ class Control:
         while (True):
             current = line_sensor.reflection()
             #print(current)
-            if (current > 20):
+            if (current > 15):
                 break
-            self.robot.drive(drive_speed, 70)
+            self.robot.drive(drive_speed, 90)
         self.robot.stop()
         #print('abc')
 
     def rotate_left(self, line_sensor, drive_speed, straight_enable = True):
         if straight_enable:
-            self.robot.straight(30)
+            self.robot.straight(40)
         wait(10)
         another_sensor = ColorSensor(Port.S1)
         while (True):
             current = another_sensor.reflection()
-            if (current < 23):
+            if (current < 18):#đây nữa
                 break
-            self.robot.drive(drive_speed, -70)
+            self.robot.drive(drive_speed, -150)#đây
         self.robot.stop()
         while (True):
             current = line_sensor.reflection()
-            if (current < 23):
+            if (current < 18):
                 break
-            self.robot.drive(drive_speed, -70)
+            self.robot.drive(drive_speed, -40)
         self.robot.stop()
 
     def rotate_back(self, line_sensor, drive_speed):

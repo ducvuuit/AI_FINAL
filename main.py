@@ -22,7 +22,7 @@ ev3 = EV3Brick()
 #ev3.speaker.beep()
 left_motor = Motor(Port.B)
 right_motor = Motor(Port.C)
-
+'''
 map = [
     [(1,20,'U', 0)],
     [(0,20,'D',0), (2,50,'U',0), (3,15,'L',0)],
@@ -30,7 +30,22 @@ map = [
     [(1,15,'R',0), (4,50,'U',1)],
     [(3,50,'D',0), (2,15,'R',0)]
 ] 
-
+'''
+map = [
+[(1,20,'U', 0)],
+[(0,20,'D',0), (2,50,'L',0), (4,15,'U',0)],
+[(1,15,'R',0),(3,15,'L',0),(5,15,'U',0)],
+[(2,50,'L',0),(6,15,'U',0)],
+[(1,15,'D',0),(5,50,'L',0),(8,15,'U',-1)],
+[(2,50,'D',0),(4,15,'R',0)],
+[(3,15,'D',0),(7,15,'R',1)],
+[(6,15,'L',0),(8,20,'R',-1),(11,50,'U',0)],
+[(7,20,'L',1),(4,15,'D',0),(10,15,'U',0)],
+[(10,15,'L',0)],
+[(8,15,'D',-1),(9,15,'R',0),(11,15,'L',0)],
+[(10,15,'R',0),(12,15,'L',10),(7,15,'D',1)],
+[(11,15,'R',0)]
+]
 #line_sensor = ColorSensor(Port.S3)
 linefollow = Control(left_motor,right_motor,threshold=21, proportion=-1.2)
 # #list_direction = linefollow.run(line_sensor, drive_speed=20)
@@ -109,5 +124,5 @@ def render(pi,startState, endState):
 V = value_iteration()
 pi = best_policy(V)
 print(pi)
-render(pi, startState = 0, endState = 4)
+render(pi, startState = 0, endState = 12)
 
